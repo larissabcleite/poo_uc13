@@ -30,3 +30,6 @@ switch ($page){
 
 
 include "src/views/footer.php"; ?>
+
+<?php
+
