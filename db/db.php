@@ -1,15 +1,22 @@
 <?php
-class Conexao {
-   
-    private static $instance = null;
  
-    public static function getConexao() {
-        if (self::$instance === null) {
-            self::$instance = new PDO("mysql:host=localhost;dbname=projeto_poo;charset=utf8", "root", "senac123");
-            self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+class Conexao {
+    private $host = "localhost";
+    private $db_name = "projeto_poo";
+    private $username = "root";
+    private $password = "senac123";
+    private $conn;
+ 
+    public function getConnection() {
+        $this->conn = null;
+ 
+        try {
+            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $exception) {
+            echo "Erro na conexão: " . $exception->getMessage();
         }
-        return self::$instance;
+ 
+        return $this->conn;
     }
 }
- 
-?>

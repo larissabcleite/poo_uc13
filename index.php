@@ -17,7 +17,7 @@ switch ($page){
             break;
 
             case 'login':
-                include "src/pages/login.php";
+                include "src/pages/cad_login.php";
                 break;
 
             default:

@@ -1,17 +1,17 @@
 <?php
  
-include 'src/classes/Usuario.php';
+include 'src/classes/login.php';
  
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['usuario'] ?? '';
+    $email = $_POST['email'] ?? '';
     $senha = $_POST['senha'] ?? '';
  
-    $usuarioObj = new usuario();
-    $usuario = $usuarioObj->autenticar($email, $senha);
+    $loginObj = new login();
+    $login = $loginObj->autenticar($email, $senha);
  
-    if ($usuario) {
-        $_SESSION['usuario_id'] = $usuario['id'];
-        $_SESSION['usuario_nome'] = $usuario['email'];
+    if ($login) {
+        $_SESSION['login_id'] = $login['id'];
+        $_SESSION['login_nome'] = $login['email'];
         header("Location: /poo");
         exit();
     } else {
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  
                 <form method="post" action="index.php?page=login">
                     <div class="mb-3">
-                        <label for="usuario" class="form-label">Usuário (e-mail):</label>
+                        <label for="login" class="form-label">Usuário (e-mail):</label>
                         <input type="email" name="usuario" id="usuario" class="form-control" required>
                     </div>
  
